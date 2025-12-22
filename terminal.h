@@ -1,5 +1,4 @@
-#ifndef TERMINAL_H
-#define TERMINAL_H
+#pragma once
 
 namespace tc
 {
@@ -12,5 +11,3 @@ namespace tc
     void show_cursor();
     void hide_cursor();
 }
-
-#endif // TERMINAL_H

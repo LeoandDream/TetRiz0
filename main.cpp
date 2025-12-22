@@ -2,19 +2,26 @@
 #include <thread>
 #include <chrono>
 #include "terminal.h"
+#include "utils.h"
+
+using namespace std::chrono_literals;
 
 void a();
 
-int main()
+void init()
 {
-    // std::cout << "\033[5;10H" << "\033[38;5;214m" << "Hello World!" << "\033[10;1H" << std::endl;
-    // tc::move_cursor(5, 10);
-    // tc::set_fore_color(214);
-    // std::cout << "Hello World!" << std::endl;
-    // tc::move_cursor(10, 1);
+    tc::hide_cursor();
+}
+
+void loop()
+{
     int line = 1;
     while (true)
     {
+
+        tc::clear_screen();
+        tc::move_cursor(2, 1);
+        std::cout << "FPS: " << utils::get_fps() << std::endl;
         tc::move_cursor(line, 10);
         line++;
         if (line > 20)
@@ -23,8 +30,21 @@ int main()
         std::cout << "  " << std::endl;
         std::cout << std::flush;
         tc::reset_colors();
-        tc::clear_screen();
-        std::this_thread::sleep_for(std::chrono::seconds(1));
+        std::this_thread::sleep_for(100ms);
     }
+}
+void exit()
+{
+    tc::reset_colors();
+    tc::clear_screen();
+    tc::move_cursor(1, 1);
+    tc::show_cursor();
+}
+
+int main()
+{
+    init();
+    loop();
+    exit();
     return 0;
 }
