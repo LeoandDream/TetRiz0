@@ -1,5 +1,7 @@
 #include "draw.h"
 #include "terminal.h"
+#include "utils.h"
+
 #include <iostream>
 
 /**
@@ -16,7 +18,12 @@ U+257x	╰	╱	╲	╳	╴	╵	╶	╷	╸	╹	╺	╻	╼	╽	╾	╿
 
 namespace draw
 {
-
+    const std::u32string style1 = U" ┌┐└┘│─";
+    const std::u32string style2 = U" ╔╗╚╝║═";
+    const std::u32string style3 = U" ╭╮╰╯│─";
+    const std::u32string style4 = U" ╒╕╘╛│═";
+    const std::u32string style5 = U" ┏┓┗┛┃━";
+    std::u32string cur_style = style2;
     inline int block2col(int block)
     {
         return 2 * block - 1;
@@ -29,49 +36,49 @@ namespace draw
             terminal_control::move_cursor(top + row, block2col(left));
             for (int col = 0; col < width; col++)
             {
-                if (row == 0)
+                if (row == 0) // 第一行
                 {
-                    if (col == 0)
+                    if (col == 0) // 第一列
                     {
-                        std::cout << " ┌";
+                        std::cout << utils::utf32_to_utf8({cur_style[0], cur_style[1]});
                     }
-                    else if (col == width - 1)
+                    else if (col == width - 1) // 最后一列
                     {
-                        std::cout << "┐";
+                        std::cout << utils::utf32_to_utf8({cur_style[2]});
                     }
                     else
                     {
-                        std::cout << "──";
+                        std::cout << utils::utf32_to_utf8({cur_style[6], cur_style[6]});
                     }
                 }
-                else if (row == height - 1)
+                else if (row == height - 1) // 最后一行
                 {
-                    if (col == 0)
+                    if (col == 0) // 第一列
                     {
-                        std::cout << " └";
+                        std::cout << utils::utf32_to_utf8({cur_style[0], cur_style[3]});
                     }
-                    else if (col == width - 1)
+                    else if (col == width - 1) // 最后一列
                     {
-                        std::cout << "┘";
+                        std::cout << utils::utf32_to_utf8({cur_style[4]});
                     }
                     else
                     {
-                        std::cout << "──";
+                        std::cout << utils::utf32_to_utf8({cur_style[6], cur_style[6]});
                     }
                 }
                 else
                 {
                     if (col == 0)
                     {
-                        std::cout << " │";
+                        std::cout << utils::utf32_to_utf8({cur_style[0], cur_style[5]});
                     }
                     else if (col == width - 1)
                     {
-                        std::cout << "│";
+                        std::cout << utils::utf32_to_utf8({cur_style[5]});
                     }
                     else
                     {
-                        std::cout << "  ";
+                        std::cout << utils::utf32_to_utf8({cur_style[0], cur_style[0]});
                     }
                 }
             }
