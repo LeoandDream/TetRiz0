@@ -7,37 +7,37 @@
  * @brief 均是大小写敏感的ansi终端控制函数实现
  *
  */
-void tc::move_cursor(int row, int col)
+void terminal_control::move_cursor(int row, int col)
 {
     std::cout << CSI << row << ";" << col << "H";
 }
 
-void tc::set_fore_color(int color_id)
+void terminal_control::set_fore_color(int color_id)
 {
     std::cout << CSI << "38;5;" << color_id << "m";
 }
 
-void tc::set_back_color(int color_id)
+void terminal_control::set_back_color(int color_id)
 {
     std::cout << CSI << "48;5;" << color_id << "m";
 }
 
-void tc::clear_screen()
+void terminal_control::clear_screen()
 {
     std::cout << CSI << "2J";
 }
 
-void tc::reset_colors()
+void terminal_control::reset_colors()
 {
     std::cout << CSI << "0m";
 }
 
-void tc::show_cursor()
+void terminal_control::show_cursor()
 {
     std::cout << CSI << "?25h";
 }
 
-void tc::hide_cursor()
+void terminal_control::hide_cursor()
 {
     std::cout << CSI << "?25l";
 }

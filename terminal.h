@@ -1,6 +1,6 @@
 #pragma once
 
-namespace tc
+namespace terminal_control
 {
     // Terminal control
     void move_cursor(int row, int col);
