@@ -1,8 +1,4 @@
 #include "draw.h"
-#include "terminal.h"
-#include "utils.h"
-
-#include <iostream>
 
 /**
         0	1	2	3	4	5	6	7	8	9	A	B	C	D	E	F
@@ -24,16 +20,12 @@ namespace draw
     const std::u32string style4 = U" ╒╕╘╛│═";
     const std::u32string style5 = U" ┏┓┗┛┃━";
     std::u32string cur_style = style2;
-    inline int block2col(int block)
-    {
-        return 2 * block - 1;
-    }
 
     void draw_window(int top, int left, int width, int height, std::string title)
     {
         for (int row = 0; row < height; row++)
         {
-            terminal_control::move_cursor(top + row, block2col(left));
+            terminal_control::move_cursor(top + row, utils::block2col(left));
             for (int col = 0; col < width; col++)
             {
                 if (row == 0) // 第一行
@@ -83,7 +75,7 @@ namespace draw
                 }
             }
         }
-        terminal_control::move_cursor(top, block2col(left) + (width * 2 - title.length()) / 2);
+        terminal_control::move_cursor(top, utils::block2col(left) + (width * 2 - title.length()) / 2);
         std::cout << title;
     }
 

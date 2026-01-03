@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/tetriz.dir/a.cpp.o CMakeFiles/tetriz.dir/draw.cpp.o CMakeFiles/tetriz.dir/main.cpp.o CMakeFiles/tetriz.dir/terminal.cpp.o CMakeFiles/tetriz.dir/utils.cpp.o  -o tetriz  -lpthread 

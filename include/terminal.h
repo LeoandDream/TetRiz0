@@ -1,5 +1,7 @@
 #pragma once
 
+#include "includes.h"
+
 namespace terminal_control
 {
     // Terminal control
